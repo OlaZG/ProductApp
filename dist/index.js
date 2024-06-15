@@ -16,12 +16,14 @@ const express = require('express');
 const app = express();
 const db_1 = __importDefault(require("./db"));
 const path_1 = __importDefault(require("path"));
+require('dotenv').config();
 const product_1 = require("./product");
 const method_override_1 = __importDefault(require("method-override"));
 app.use((0, method_override_1.default)('_method'));
 app.set('views', path_1.default.join(__dirname, '../src/views'));
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
+console.log(`MONGO_URL = ${process.env.MONGO_URL}`);
 (0, db_1.default)();
 app.get('/products/new', (_req, res) => {
     res.render('products/new');
@@ -62,7 +64,7 @@ app.delete('/products/:id', (req, res) => __awaiter(void 0, void 0, void 0, func
     yield product_1.Product.findByIdAndDelete(id, req.body);
     res.redirect('/products');
 }));
-app.listen(3000, () => {
-    console.log("APP IS LISTENING ON PORT 3000");
+app.listen(5000, () => {
+    console.log("APP IS LISTENING ON PORT 5000");
 });
 //# sourceMappingURL=index.js.map

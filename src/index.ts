@@ -3,15 +3,16 @@ const express = require('express');
 const app = express();
 import connectDB from './db';
 import path from 'path';
+require('dotenv').config();
 import { Product } from "./product"; 
-import methodOverride from 'method-override';
+import methodOverride from 'method-override'
 
 
 app.use(methodOverride('_method'))
 app.set('views', path.join(__dirname, '../src/views'));
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended : true}));
-
+console.log(`MONGO_URL = ${process.env.MONGO_URL}`);
 // Connect to MongoDB
 connectDB();
 
@@ -61,6 +62,6 @@ app.delete('/products/:id', async(req, res) =>{
     res.redirect('/products');
 })
 
-app.listen(3000, () => {
-    console.log("APP IS LISTENING ON PORT 3000");
+app.listen(5000, () => {
+    console.log("APP IS LISTENING ON PORT 5000");
 })

@@ -13,9 +13,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
+require('dotenv').config();
 const connectDB = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield mongoose_1.default.connect('mongodb://localhost:27017/productApp');
+        yield mongoose_1.default.connect(`mongodb+srv://test-user:VKdnk7CRB2jd8rHv@cluster0.fc50jdc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`);
         console.log('Connected to MongoDB!');
     }
     catch (error) {
